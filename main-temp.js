@@ -110,7 +110,7 @@ document.getElementById("search-btn").addEventListener('click', function(){
    document.getElementById("main-section").innerHTML ='';
    const searchValue = document.getElementById("search-field").value;
    for(let i=0; i<servicesArray.length; i++){
-      if(servicesArray[i].description.toLowerCase().includes(searchValue.toLowerCase()) || servicesArray[i].vehicleTitle().toLowerCase().includes(searchValue.toLowerCase())){
+      if(servicesArray[i].description.toLowerCase().includes(searchValue.toLowerCase()) || servicesArray[i].vehicle.toLowerCase().includes(searchValue.toLowerCase())){
          displayServices(servicesArray[i]);
       }
       // you can't use else here!!
