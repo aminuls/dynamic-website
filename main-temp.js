@@ -1,7 +1,7 @@
 const carObject = {
    vehicle: "Car",
    imageURL: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Y2FyfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-   vehicleTitle: function(){
+   vehicleTitle: function () {
       return "Transport Mood " + this.vehicle;
    },
    tax: 500,
@@ -12,7 +12,7 @@ const carObject = {
 const bikeObject = {
    vehicle: "Bike",
    imageURL: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bW90b3JiaWtlfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-   vehicleTitle: function(){
+   vehicleTitle: function () {
       return "Transport Mood " + this.vehicle;
    },
    tax: 200,
@@ -23,7 +23,7 @@ const bikeObject = {
 const busObject = {
    vehicle: "Bus",
    imageURL: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-   vehicleTitle: function(){
+   vehicleTitle: function () {
       return "Transport Mood " + this.vehicle;
    },
    tax: 1000,
@@ -31,7 +31,68 @@ const busObject = {
    capacity: 30,
    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam fuga inventore quis, quod nemo pariatur unde architecto iure officiis repellat!",
 };
-const servicesArray = [carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject,carObject, bikeObject, busObject];
+const servicesArray = [
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+   carObject,
+   bikeObject,
+   busObject,
+];
 
 function displayServices(service) {
    const mainSection = document.getElementById("main-section");
@@ -61,19 +122,18 @@ function displayServices(service) {
 // displayServices(busObject);
 // displayServices(bikeObject);
 
-
-function displayAllArticles(arr){
-   for(let i=0; i<arr.length; i++){
+function displayAllArticles(arr) {
+   for (let i = 0; i < arr.length; i++) {
       displayServices(arr[i]);
    }
 }
 displayAllArticles(servicesArray);
 
-function handleBooking(service,vehicleTitle){
+function handleBooking(service, vehicleTitle) {
    const modalTitle = document.getElementById("exampleModalLabel");
-   modalTitle.innerHTML = vehicleTitle();
+   modalTitle.innerHTML = vehicleTitle.call(service);
    const stringified = JSON.stringify(service);
-   const modalBody = document.getElementById('mod-body');
+   const modalBody = document.getElementById("mod-body");
    modalBody.innerHTML = `
       <div class="card mx-auto border-0" style="width: 100%">
          <img src=${service.imageURL} class="card-img-top" alt="..." />
@@ -91,26 +151,26 @@ function handleBooking(service,vehicleTitle){
                <button class="btn btn-outline-danger" type="submit" onclick='calculateCost(${stringified})'>Submit</button>
             </div>
          </div>
-      </div>`
+      </div>`;
 }
 
-function calculateCost(service){
+function calculateCost(service) {
    const quantity = document.getElementById("quantity-input").value;
    const distance = document.getElementById("distance-input").value;
-   const tax = document.getElementById("tax").innerText==="--" ? 0 : document.getElementById("tax").innerText;
+   const tax = document.getElementById("tax").innerText === "--" ? 0 : document.getElementById("tax").innerText;
    const fare = document.getElementById("fare");
-   if(quantity>0 && distance>0){
+   if (quantity > 0 && distance > 0) {
       const totalCost = document.getElementById("total-cost");
       fare.innerText = quantity * distance * service.farePerKilo;
-      totalCost.innerText = (quantity * distance * service.farePerKilo) + parseFloat(tax);
+      totalCost.innerText = quantity * distance * service.farePerKilo + parseFloat(tax);
    }
 }
 // made searching process //
-document.getElementById("search-btn").addEventListener('click', function(){
-   document.getElementById("main-section").innerHTML ='';
+document.getElementById("search-btn").addEventListener("click", function () {
+   document.getElementById("main-section").innerHTML = "";
    const searchValue = document.getElementById("search-field").value;
-   for(let i=0; i<servicesArray.length; i++){
-      if(servicesArray[i].description.toLowerCase().includes(searchValue.toLowerCase()) || servicesArray[i].vehicle.toLowerCase().includes(searchValue.toLowerCase())){
+   for (let i = 0; i < servicesArray.length; i++) {
+      if (servicesArray[i].description.toLowerCase().includes(searchValue.toLowerCase()) || servicesArray[i].vehicleTitle().toLowerCase().includes(searchValue.toLowerCase())) {
          displayServices(servicesArray[i]);
       }
       // you can't use else here!!
@@ -122,11 +182,11 @@ document.getElementById("search-btn").addEventListener('click', function(){
          `;
       } */
    }
-   if(document.getElementById("main-section").innerHTML ===''){
-      document.getElementById("main-section").innerHTML =`
+   if (document.getElementById("main-section").innerHTML === "") {
+      document.getElementById("main-section").innerHTML = `
          <div class="d-flex align-items-center justify-content-center" style="min-height: 300px">
             <p class="fs-1">Your search - <span class="h1">"${searchValue}"</span> - did not match any documents.</p>
          </div>
          `;
    }
-})
+});
