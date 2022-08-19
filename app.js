@@ -2,7 +2,7 @@ const carObject = {
    vehicle: "Car",
    imageURL: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Y2FyfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
    vehicleTitle: function(){
-      return "Transport Mood " + this.vehicle;
+      return "Transport Mood " + carObject.vehicle;
    },
    tax: 500,
    farePerKilo: 3,
