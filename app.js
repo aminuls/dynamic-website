@@ -13,7 +13,7 @@ const bikeObject = {
    vehicle: "Bike",
    imageURL: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bW90b3JiaWtlfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
    vehicleTitle: function(){
-      return "Transport Mood " + this.vehicle;
+      return "Transport Mood " + bikeObject.vehicle;
    },
    tax: 200,
    farePerKilo: 2,
@@ -24,7 +24,7 @@ const busObject = {
    vehicle: "Bus",
    imageURL: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
    vehicleTitle: function(){
-      return "Transport Mood " + this.vehicle;
+      return "Transport Mood " + busObject.vehicle;
    },
    tax: 1000,
    farePerKilo: 6,
